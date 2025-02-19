@@ -1,28 +1,27 @@
 {
 	"name": "restaurant-tracker",
 	"version": "0.1.0",
-	"description": "Zero-config TypeScript starter for modern Node.js development. ESM, Vitest, ESLint, Prettier. Production-ready in seconds! ⚡",
+	"description": "Restaurant Tracking app",
 	"main": "build/index.js",
-	"type": "module",
 	"scripts": {
-		"dev": "tsx watch src/index.ts",
+		"dev": "cross-env NODE_ENV=development tsx watch src/index.ts",
 		"lint": "prettier --check . && eslint .",
 		"lint:fix": "prettier --write . && eslint . --fix",
 		"test": "vitest src --silent",
 		"test:coverage": "vitest run --coverage --silent",
 		"clean": "rimraf build",
 		"build": "rimraf build && tsc && tsc-alias",
+		"postbuild": "copyfiles -u 1 \"src/**/*.graphql\" build --soft",
 		"start": "node build/index.js"
 	},
 	"author": {
-		"name": "Mohammad Islam",
-		"url": "https://www.mislam.dev"
+		"name": "RaviAnand Mohabir",
+		"url": "https://www.ravianand.me"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/mislam/typezero.git"
+		"url": "git+https://github.com/dan6erbond/restaurant-tracker.git"
 	},
-	"homepage": "https://typezero.dev",
 	"keywords": [
 		"nodejs",
 		"node.js",
@@ -37,14 +36,25 @@
 	],
 	"license": "MIT",
 	"dependencies": {
-		"dotenv": "^16.4.5"
+		"@envelop/graphql-modules": "^7.0.1",
+		"dotenv": "^16.4.7",
+		"drizzle-orm": "^0.39.3",
+		"graphql": "^16.10.0",
+		"graphql-import-node": "^0.0.5",
+		"graphql-modules": "^3.0.0",
+		"graphql-yoga": "^5.12.0",
+		"pg": "^8.13.3"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.4",
 		"@eslint/js": "^9.1.0",
 		"@tsconfig/node20": "^20.1.4",
 		"@types/node": "^22.10.5",
+		"@types/pg": "^8.11.11",
 		"@vitest/coverage-v8": "^2.1.8",
+		"copyfiles": "^2.4.1",
+		"cross-env": "^7.0.3",
+		"drizzle-kit": "^0.30.4",
 		"eslint": "^9.17.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.2.3",
@@ -52,7 +62,7 @@
 		"prettier": "^3.4.2",
 		"rimraf": "^6.0.1",
 		"tsc-alias": "^1.8.10",
-		"tsx": "^4.19.2",
+		"tsx": "^4.19.3",
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.19.0",
 		"vite-tsconfig-paths": "^5.1.4",
