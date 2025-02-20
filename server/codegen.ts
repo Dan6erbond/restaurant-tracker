@@ -1,7 +1,12 @@
-import type { CodegenConfig } from '@graphql-codegen/cli'
+import type { CodegenConfig } from '@graphql-codegen/cli/typings/index.js'
 
 const config: CodegenConfig = {
-	schema: './src/modules/**/*.graphql',
+	schema: './src/**/*.graphql',
+	documents: 'src/**/*.spec.ts',
+	ignoreNoDocuments: true,
+	hooks: {
+		afterAllFileWrite: ['prettier --write']
+	},
 	generates: {
 		'./src/modules/': {
 			preset: 'graphql-modules',
@@ -18,6 +23,9 @@ const config: CodegenConfig = {
 				'typescript',
 				'typescript-resolvers'
 			]
+		},
+		'./src/gql/': {
+			preset: 'client-preset'
 		}
 	}
 }

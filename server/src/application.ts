@@ -1,6 +1,6 @@
 import { createApplication } from 'graphql-modules'
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres'
-import { restaurant } from './modules/restaurant/module'
+import { restaurant } from './modules/restaurant/restaurant.module'
 
 // This is your application, it contains your GraphQL schema and the implementation of it.
 export const application = createApplication({
